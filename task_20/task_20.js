@@ -3,7 +3,9 @@ var right_in = document.getElementById("right-in");
 var left_out = document.getElementById("left-out");
 var right_out = document.getElementById("right-out");
 var content = document.getElementById("wrap");
+var searchbtn=document.getElementById("searchbtn");
 var queue=new Array();
+
 
 var EventUtil = {
     addHandler: function(element,type,handler){
@@ -25,7 +27,21 @@ function isNumber(input)
         return false;
     }
 }
-
+function search()
+{
+    var str="";
+    var text = document.getElementById("search").value;
+    for(x in queue)
+    {
+        var pat=new RegExp(text);
+        if(pat.test(queue[x]))
+        {
+            str+="<div class='content' style='background-color: #0066cc'>"+queue[x]+"</div>"
+        }
+        else str+="<div class='content'>"+queue[x]+"</div>";
+    }
+    content.innerHTML=str;
+}
 function myInput(input)
 {
     //var inputArr=input.split(/[\n\t\r\s,，;；、]+/g,"");
@@ -97,4 +113,5 @@ EventUtil.addHandler(left_in,'click',leftin);
 EventUtil.addHandler(right_in,'click',rightin);
 EventUtil.addHandler(left_out,'click',leftout);
 EventUtil.addHandler(right_out,'click',rightout);
+EventUtil.addHandler(searchbtn,'click',search);
 
