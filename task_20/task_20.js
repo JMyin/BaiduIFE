@@ -4,7 +4,6 @@ var left_out = document.getElementById("left-out");
 var right_out = document.getElementById("right-out");
 var content = document.getElementById("wrap");
 var queue=new Array();
-var inputArr=new Array();
 
 var EventUtil = {
     addHandler: function(element,type,handler){
@@ -29,7 +28,10 @@ function isNumber(input)
 
 function myInput(input)
 {
-    return inputArr=input.split(/[\n\t\r\s,，;；、]/g,"");
+    //var inputArr=input.split(/[\n\t\r\s,，;；、]+/g,"");
+    var inputArr=input.split(/[\n\r\t\s,，、;；]+/g);
+    console.log(inputArr);
+    return inputArr;
 }
 function render()
 {
