@@ -4,7 +4,7 @@ var left_out = document.getElementById("left-out");
 var right_out = document.getElementById("right-out");
 var content = document.getElementById("wrap");
 var queue=new Array();
-
+var inputArr=new Array();
 
 var EventUtil = {
     addHandler: function(element,type,handler){
@@ -17,10 +17,19 @@ var EventUtil = {
         }
     }
 };
-
-function isValid(input)
+function isNumber(input)
 {
-    return /^\d+$/.test(input);
+    if( /^\d+$/.test(input))
+    return true;
+    else
+    {
+        return false;
+    }
+}
+
+function myInput(input)
+{
+    return inputArr=input.split(/[\n\t\r\s,，;；、]/g,"");
 }
 function render()
 {
@@ -35,23 +44,39 @@ function render()
 function leftin()
 {
     var text = document.getElementById("input").value;
-    if(isValid(text)) {
+    if(isNumber(text)) {
         queue.unshift(text);
         render();
     }
     else
-    alert("please input the digit");
+    {
+        var tmpArr=new Array();
+        tmpArr=myInput(text);
+        for(x in tmpArr)
+        {
+            queue.unshift(tmpArr[x]);
+        }
+        render();
+    }
 }
 
 function rightin()
 {
     var text = document.getElementById("input").value;
-    if(isValid(text)) {
+    if(isNumber(text)) {
         queue.push(text);
         render();
     }
     else
-        alert("please input the digit");
+    {
+        var tmpArr=new Array();
+        tmpArr=myInput(text);
+        for(x in tmpArr)
+        {
+            queue.push(tmpArr[x]);
+        }
+        render();
+    }
 }
 
 function leftout()
