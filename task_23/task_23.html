@@ -8,7 +8,7 @@
 <body>
    <canvas id="canvas" width="800" height="600"></canvas>
    <div class="terminal">
-       <textarea cols="28" rows="40" readonly></textarea>
+       <textarea cols="28" rows="40" readonly id="text"></textarea>
    </div>
    <div class="pannel">
        <div class="plane1">
@@ -23,8 +23,23 @@
            <button id="stop2">结束飞行</button>
            <button id="drop2">销毁</button>
        </div>
+       <div class="plane3">
+           <span>3号飞船</span>
+           <button id="start3">开始</button>
+           <button id="stop3">结束飞行</button>
+           <button id="drop3">销毁</button>
+       </div>
+       <div class="plane4">
+           <span>4号飞船</span>
+           <button id="start4">开始</button>
+           <button id="stop4">结束飞行</button>
+           <button id="drop4">销毁</button>
+       </div>
        <button id="new">新的飞船起飞</button>
    </div>
 </body>
-<script src="task_23.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/event.js"></script>
+<script src="scripts/plane.js"></script>
+<script src="scripts/mediator.js"></script>
 </html>
