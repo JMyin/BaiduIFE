@@ -21,6 +21,7 @@ var Mediator=
         setTimeout(function(){
             if (Math.random() < 0.7) {
                 msg.cmd = 'stop';
+                planeList[msg.no].flight.stop();
                 textArea.value+="cmd:"+msg.cmd+"   id: "+msg.no+'\n';
             }
             else
@@ -36,7 +37,6 @@ var Mediator=
                 msg.cmd = 'drop';
                 planeList[msg.no].flight.drop();
                 planeArr[msg.no]=false;
-                planeType(msg.no);
                 textArea.value+="cmd:"+msg.cmd+"   id: "+msg.no+'\n';
             }
             else

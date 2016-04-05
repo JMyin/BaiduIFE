@@ -15,52 +15,59 @@ function plane(num){
         no:num,
         flight:{
             start:function(){
-                if(obj.power>0) {
-                    obj.status = 1;
-                    setInterval(function()
-                    {
+                if(planeList[num].status==0) {
+                    if (obj.power > 0) {
+                        obj.status = 1;
                         clearPlane(num);
-                        planeList[num].angle+=4;
-                        planeList[num].angle=planeList[num].angle%360;
-                        planeType(num);
-                    }, 50);
+                        var func = setInterval(function () {
+                            clearPlane(num);
+                            planeList[num].angle += 1;
+                            planeList[num].angle = planeList[num].angle % 360;
+                            planeList[num].energy.charge();
+                            planeList[num].energy.disCharge();
+                            planeType(num);
+                            showPower(num);
+                            if (planeList[num].power <= 0||planeList[num].status==0) {
+                                clearInterval(func);
+                                planeList[num].flight.stop();
+                            }
+                        }, 24);
+                    }
                 }
             },
             stop:function(){
                 obj.status=0;
+                var func=setInterval(function()
+                {
+                     showPower(num);
+                     planeList[num].energy.charge();
+                    if(planeList[num].status>0||planeList[num].status==-1)
+                     clearInterval(func);
+                },24)
             },
             drop:function(){
                 obj.status=-1;
+                setTimeout(function(){clearPlane(num)},100);
+            },
+            self_drop:function(){
+                obj.status=-1;
+                planeArr[msg.no]=false;
+                setTimeout(function(){clearPlane(num)},100);
             }
         },
         energy:{
             charge:function() {
-                obj.power += 2;
+                obj.power += 0.2;
                 if(obj.power >= 100)
                     obj.power = 100;
             },
             disCharge:function(){
                 if(obj.status==1)
-                    obj.power-=5;
+                    obj.power-=0.5;
                 if(obj.power<=0) {
                     obj.power = 0;
                     obj.status=0;
                 }
-            },
-            showCharge:function()
-            {
-                return obj.power;
-            }
-        },
-        command:function(msg)
-        {
-            if(msg.num!=obj.no)
-                return;
-            switch(msg.cmd)
-            {
-                case 'stop':obj.flight.stop();break;
-                case 'start':obj.flight.start();break;
-                case 'drop':obj.flight.drop();break;
             }
         },
         power:100,
