@@ -16,5 +16,6 @@
 * 任务二十 [Demo](http://adspoing.github.io/baiduIfe/task_20/task_20.html)
 * 任务二十一 [Demo](http://adspoing.github.io/baiduIfe/task_21/task_21.html)
 * 任务二十二 [Demo](http://adspoing.github.io/baiduIfe/task_22/task_22.html)
+* 任务二十六 [Demo](http://adspoing.github.io/baiduIfe/task_26/task_26.html)
 * 任务二十九 [Demo](http://adspoing.github.io/baiduIfe/task_29/task_29.html)
 
